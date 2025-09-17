@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damian UI/UX Hub - Responsive Multi-Page Website</title>
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --background-color: #f9fafb;
+            --surface-color: #ffffff;
+            --text-color-primary: #1f2937;
+            --text-color-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --highlight-color: #3b82f6;
+            --success-color: #10b981;
+            --success-bg: #dcfce7;
+            --success-text: #166534;
+            --error-color: #ef4444;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color-primary);
+            background-color: var(--background-color);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Reusable Components */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-color-secondary);
+            border: 2px solid var(--border-color);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background: var(--surface-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-color-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: var(--text-color-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--surface-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--primary-hover);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color-secondary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            background-color: #eff6ff;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color-secondary);
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+            padding: 6rem 0;
+            text-align: center;
+            border-bottom: 1px solid #dbeafe;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-color-primary);
+        }
+
+        .hero .highlight {
+            color: var(--highlight-color);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-color-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Image Slider */
+        .slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 4rem auto;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .slider {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .slide-content h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .slider-nav:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .slider-nav.prev {
+            left: 1rem;
+        }
+
+        .slider-nav.next {
+            right: 1rem;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Feature & Card Sections */
+        .features, .team, .contact-section {
+            padding: 4rem 0;
+        }
+
+        .features-grid, .team-grid, .stats-grid, .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card, .team-card, .contact-card {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            background: #eff6ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon, .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3, .team-card h3, .contact-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color-primary);
+        }
+
+        .feature-card p, .team-card p, .contact-card p {
+            color: var(--text-color-secondary);
+            line-height: 1.6;
+        }
+        
+        /* About Page specific styles */
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .mission-grid img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .badge.green {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .stats {
+            padding: 4rem 0;
+            background: var(--surface-color);
+            border-top: 1px solid #f3f4f6;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .stat-item .feature-icon {
+            margin-bottom: 0;
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-color-secondary);
+            font-weight: 500;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 4px solid #eff6ff;
+        }
+
+        .team-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-card:hover {
+            background: #ecfdf5;
+        }
+
+        .contact-icon {
+            background: var(--success-bg);
+            color: var(--success-color);
+        }
+
+        .contact-card p {
+            margin-bottom: 0;
+        }
+
+        .contact-card .highlight-text {
+            font-weight: 600;
+            color: var(--success-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--success-color);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        input.error, textarea.error {
+            border-color: var(--error-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .success-message {
+            background: var(--success-bg);
+            color: var(--success-text);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--text-color-primary);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 4rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #374151;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Utility classes */
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 1rem; }
+        .hidden { display: none; }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--surface-color);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                border-bottom: 1px solid #f3f4f6;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .features, .stats, .contact-section, .cta {
+                padding: 3rem 0;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Damian UI/UX Hub</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </nav>
+        </div>
+    </header>
+<!--Home page-->
+    <main>
+        <div id="home" class="page active">
+            <section class="hero">
+                <div class="container">
+                    <h1>Welcome to <span class="highlight">Damian UI/UX Design Hub</span></h1>
+                    <p>Experience the future of web development with our cutting-edge solutions. We create beautiful, responsive, and high-performing websites that drive results.</p>
+                    <a href="#contact" class="btn">Get Started Today</a>
+                </div>
+            </section>
+
+            <section class="container">
+                <div class="slider-container">
+                    <div class="slider" id="imageSlider">
+                        <div class="slide active">
+                            <img src="images/StockCake-Focused Data Analysis_1758094867.jpg" alt="Modern Web Development">
+                            <div class="slide-content">
+                                <h3>Modern Web Development</h3>
+                                <p>Building the future with cutting-edge technologies</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="images/StockCake-Browsing Productively_1758095279.jpg" alt="Responsive Design">
+                            <div class="slide-content">
+                                <h3>Responsive Design</h3>
+                                <p>Creating seamless experiences across all devices</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="images/StockCake-Design Workflow Planning_1758094905.jpg" alt="User Experience">
+                            <div class="slide-content">
+                                <h3>User Experience</h3>
+                                <p>Designing intuitive and engaging interfaces</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-nav prev" id="prevBtn">‹</button>
+                    <button class="slider-nav next" id="nextBtn">›</button>
+                    <div class="slider-dots" id="sliderDots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="container">
+                    <h2 class="section-title">Why Choose Damian?</h2>
+                    <p class="section-subtitle">We combine innovative design with powerful technology to deliver exceptional web experiences.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Fast Performance</h3>
+                            <p>Lightning-fast loading times and optimized performance for the best user experience.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Modern Technology</h3>
+                            <p>Built with the latest web technologies including HTML5, CSS3, and JavaScript.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Secure & Reliable</h3>
+                            <p>Enterprise-grade security and reliability you can trust for your business.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Mobile First</h3>
+                            <p>Designed with mobile users in mind, ensuring perfect experiences on any device.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta">
+                <div class="container">
+                    <h2>Ready to Build Something Amazing?</h2>
+                    <p>Join thousands of satisfied clients who have transformed their digital presence with Damian UI/UX Hub.</p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn">Start Your Project</a>
+                        <a href="#" class="btn btn-secondary">View Portfolio</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+   <!--About us-->
+        <div id="about" class="page">
+            <section class="hero">
+                <div class="container">
+                    <h1>About <span class="highlight">Damian UI/UX Design Hub</span></h1>
+                    <p>At Damian UI/UX Design Hub, we believe design is more than just making things look attractive — it’s about solving problems, telling stories, and creating experiences that feel natural to the user. Founded with a passion for creativity and technology, we exist to help businesses, startups, and individuals turn their ideas into functional, user-centered digital products. Our approach blends design thinking, research, and innovation, ensuring that every interface we build is not only visually appealing but also effective in guiding users toward their goals.
+                    </p>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="container">
+                    <div class="mission-grid">
+                        <div>
+                            <h2 class="section-title" style="text-align: left;">Our Mission</h2>
+                            <p style="font-size: 1.1rem; color: var(--text-color-secondary); margin-bottom: 1.5rem;">
+                                At Damian UI/UX design hub, we believe that great design and cutting-edge technology should be accessible to businesses of all sizes. Our mission is to bridge the gap between innovative web solutions and practical business needs.
+                            </p>
+                            <p style="font-size: 1.1rem; color: var(--text-color-secondary); margin-bottom: 2rem;">
+                                We're committed to delivering not just websites, but comprehensive digital experiences that engage users, drive conversions, and help our clients achieve their goals.
+                            </p>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <span class="badge">Innovation</span>
+                                <span class="badge">Quality</span>
+                                <span class="badge green">Excellence</span>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="images/StockCake-Diverse tech collaboration_1758094829.jpg" alt="Team collaboration">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="container">
+                    <h2 class="section-title">Our Impact in Numbers</h2>
+                    <p class="section-subtitle">These numbers represent the trust our clients place in us.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="feature-icon">👥</div>
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="feature-icon">🏆</div>
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Awards Won</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="feature-icon">🎯</div>
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="feature-icon">⏰</div>
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="container">
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <p class="section-subtitle">The creative minds behind Damian UI/UX Hub's success. Each team member brings unique skills and perspectives to every project.</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <img src="https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Sarah Johnson" class="team-avatar">
+                            <h3>Sarah Johnson</h3>
+                            <div class="team-role">Lead Designer</div>
+                            <p>Creative visionary with 8 years of design experience.</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://images.pexels.com/photos/3778966/pexels-photo-3778966.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Michael Chen" class="team-avatar">
+                            <h3>Michael Chen</h3>
+                            <div class="team-role">Senior Developer</div>
+                            <p>Full-stack developer specializing in modern web technologies.</p>
+                        </div>
+                        <div class="team-card">
+                            <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Emily Rodriguez" class="team-avatar">
+                            <h3>Emily Rodriguez</h3>
+                            <div class="team-role">UX Specialist</div>
+                            <p>User experience expert focused on creating intuitive interfaces.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+  <!--Contact us page-->
+        <div id="contact" class="page">
+            <section class="hero">
+                <div class="container">
+                    <h1>Get In <span class="highlight">Touch</span></h1>
+                    <p>Have a project in mind? Let's discuss how we can help you bring your vision to life. We'd love to hear from you!</p>
+                </div>
+            </section>
+
+            <section class="contact-section">
+                <div class="container">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">✉️</div>
+                            <h3>Email Us</h3>
+                            <p class="highlight-text">madudamian25@gmail.com</p>
+                            <p>Send us an email anytime</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">📞</div>
+                            <h3>Call Us</h3>
+                            <p class="highlight-text">+2348132446354</p>
+                            <p>Mon-Fri from 8am to 6pm</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">📍</div>
+                            <h3>Visit Us</h3>
+                            <p class="highlight-text">52 Edeki street, Dawaki, Abuja, Nigeria</p>
+                            <p>San Francisco, CA 94105</p>
+                        </div>
+                    </div>
+
+                    <div class="form-container">
+                        <h2 class="text-center mb-4">Send Us a Message</h2>
+                        <p class="text-center mb-4" style="color: var(--text-color-secondary);">Fill out the form below and we'll get back to you within 24 hours.</p>
+                        
+                        <div id="successMessage" class="success-message hidden">
+                            <strong>✓ Message Sent!</strong> Thank you for your message. We'll get back to you soon!
+                        </div>
+
+                        <form id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                                    <div class="error-message" id="nameError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                                    <div class="error-message" id="emailError"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                                <div class="error-message" id="subjectError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" placeholder="Tell us more about your project..."></textarea>
+                                <div class="error-message" id="messageError"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn" style="width: 100%;" id="submitBtn">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+<!--Footer-->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Damian UI/UX</h3>
+                    <p>Creating beautiful, responsive, and modern web experiences with cutting-edge technologies and thoughtful design.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="https://linkedin.com" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="https://instagram.com" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>52 Edeki street, Dawaki, Abuja, Nigeria</p>
+                    <p><strong>Email:</strong> madudamian25@gmail.com</p>
+                    <p><strong>Phone:</strong> +2348132446354</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Stay updated with our latest news and offers.</p>
+                    <form style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <input type="email" placeholder="Your email address" style="flex-grow: 1; border: none; padding: 0.75rem; border-radius: 0.5rem;">
+                        <button type="submit" class="btn" style="padding: 0.75rem 1.5rem; white-space: nowrap;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Damian UI/UX Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const navItems = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const slider = document.getElementById('imageSlider');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const sliderDots = document.getElementById('sliderDots');
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+
+            let currentSlide = 0;
+
+            // Mobile Menu Toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Page Navigation Logic
+            function showPage(pageId) {
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+
+                // Update active navigation link
+                navItems.forEach(link => link.classList.remove('active'));
+                document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            }
+
+            // Initially show the home page
+            showPage('home');
+
+            // Add click listeners to navigation links
+            navLinks.addEventListener('click', (e) => {
+                if (e.target.matches('.nav-link')) {
+                    e.preventDefault();
+                    const pageId = e.target.dataset.page;
+                    showPage(pageId);
+                    navLinks.classList.remove('active'); // Close menu after selection
+                }
+            });
+
+            // Image Slider Functionality
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active');
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                    }
+                });
+
+                const dots = sliderDots.querySelectorAll('.dot');
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentSlide].classList.add('active');
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlider();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlider();
+            });
+
+            sliderDots.addEventListener('click', (e) => {
+                if (e.target.matches('.dot')) {
+                    currentSlide = parseInt(e.target.dataset.slide);
+                    updateSlider();
+                }
+            });
+
+            // Auto-play slider
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlider();
+            }, 5000);
+
+            // Contact Form Validation
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+
+                const requiredFields = ['name', 'email', 'subject', 'message'];
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                requiredFields.forEach(field => {
+                    const input = document.getElementById(field);
+                    const errorDiv = document.getElementById(`${field}Error`);
+                    input.classList.remove('error');
+                    errorDiv.textContent = '';
+
+                    if (!data[field].trim()) {
+                        input.classList.add('error');
+                        errorDiv.textContent = `${input.previousElementSibling.textContent.replace(':', '')} is required.`;
+                        isValid = false;
+                    }
+                });
+
+                if (data.email && !emailRegex.test(data.email)) {
+                    const emailInput = document.getElementById('email');
+                    const emailError = document.getElementById('emailError');
+                    emailInput.classList.add('error');
+                    emailError.textContent = 'Please enter a valid email address.';
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Simulate form submission
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(() => {
+                        submitBtn.textContent = 'Message Sent!';
+                        successMessage.classList.remove('hidden');
+                        contactForm.reset();
+                        
+                        setTimeout(() => {
+                            successMessage.classList.add('hidden');
+                            submitBtn.textContent = 'Send Message';
+                            submitBtn.disabled = false;
+                        }, 5000);
+
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
