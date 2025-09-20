@@ -3,1114 +3,1354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damian UI/UX Hub - Responsive Multi-Page Website</title>
+    <title>NigeriaHomes - Find Your Dream Home in Nigeria</title>
     <style>
-        /* General Styles */
-        :root {
-            --primary-color: #3b82f6;
-            --primary-hover: #2563eb;
-            --background-color: #f9fafb;
-            --surface-color: #ffffff;
-            --text-color-primary: #1f2937;
-            --text-color-secondary: #6b7280;
-            --border-color: #e5e7eb;
-            --highlight-color: #3b82f6;
-            --success-color: #10b981;
-            --success-bg: #dcfce7;
-            --success-text: #166534;
-            --error-color: #ef4444;
-            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-green: #228B22;
+            --accent-gold: #FFD700;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --background-light: #F8F9FA;
+            --white: #FFFFFF;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: var(--font-family);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-color-primary);
-            background-color: var(--background-color);
-        }
-
-        html {
+            color: var(--text-dark);
             scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Reusable Components */
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
-        }
-
-        .btn:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-color-secondary);
-            border: 2px solid var(--border-color);
-            box-shadow: none;
-        }
-
-        .btn-secondary:hover {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-            background: var(--surface-color);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--text-color-primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            color: var(--text-color-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* Header Styles */
         header {
-            background: var(--surface-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: var(--shadow);
             z-index: 1000;
+            transition: var(--transition);
         }
 
-        nav {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.25rem 0;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
+            color: var(--primary-green);
+            cursor: pointer;
         }
 
-        .logo:hover {
-            color: var(--primary-hover);
+        .logo span {
+            color: var(--accent-gold);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-links a {
+        .nav-menu li a {
             text-decoration: none;
-            color: var(--text-color-secondary);
+            color: var(--text-dark);
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-color);
-            background-color: #eff6ff;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
+            transition: var(--transition);
+            position: relative;
             cursor: pointer;
-            color: var(--text-color-secondary);
         }
 
-        /* Page Sections */
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .nav-menu li a:hover::after,
+        .nav-menu li a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-green);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Page Container */
+        .page-container {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
         .page {
             display: none;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .page.active {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
-            padding: 6rem 0;
-            text-align: center;
-            border-bottom: 1px solid #dbeafe;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--text-color-primary);
-        }
-
-        .hero .highlight {
-            color: var(--highlight-color);
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: var(--text-color-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Image Slider */
-        .slider-container {
-            position: relative;
-            max-width: 900px;
-            margin: 4rem auto;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .slider {
-            position: relative;
-            height: 450px;
-            overflow: hidden;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .slide-content h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-bottom: 0.5rem;
-        }
-
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .slider-nav:hover {
-            background: rgba(255,255,255,0.4);
-        }
-
-        .slider-nav.prev {
-            left: 1rem;
-        }
-
-        .slider-nav.next {
-            right: 1rem;
-        }
-
-        .slider-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        /* Feature & Card Sections */
-        .features, .team, .contact-section {
-            padding: 4rem 0;
-        }
-
-        .features-grid, .team-grid, .stats-grid, .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card, .team-card, .contact-card {
-            background: var(--surface-color);
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .feature-card:hover {
-            background: #eff6ff;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon, .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: #dbeafe;
-            border-radius: 50%;
+            height: 100vh;
+            background: linear-gradient(rgba(34, 139, 34, 0.7), rgba(34, 139, 34, 0.7)),
+                        url('https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: var(--primary-color);
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            margin-top: -80px;
         }
 
-        .feature-card h3, .team-card h3, .contact-card h3 {
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
             font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-color-primary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .feature-card p, .team-card p, .contact-card p {
-            color: var(--text-color-secondary);
-            line-height: 1.6;
-        }
-        
-        /* About Page specific styles */
-        .mission-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .mission-grid img {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .badge {
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .badge.green {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .stats {
-            padding: 4rem 0;
-            background: var(--surface-color);
-            border-top: 1px solid #f3f4f6;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .stat-item .feature-icon {
-            margin-bottom: 0;
-        }
-
-        .stat-number {
-            font-size: clamp(2rem, 5vw, 3rem);
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
             font-weight: bold;
-            color: var(--primary-color);
-            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            animation: fadeInUp 1s ease 0.4s both;
+            border: none;
+            cursor: pointer;
         }
 
-        .stat-label {
-            color: var(--text-color-secondary);
-            font-weight: 500;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
 
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        /* Section Styles */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .team-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+        }
+
+        /* Properties Section */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 250px;
             object-fit: cover;
-            border: 4px solid #eff6ff;
         }
 
-        .team-role {
-            color: var(--primary-color);
-            font-weight: 500;
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
             margin-bottom: 1rem;
         }
 
-        /* Contact Section */
-        .contact-card:hover {
-            background: #ecfdf5;
+        .learn-more-btn {
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
         }
 
-        .contact-icon {
-            background: var(--success-bg);
-            color: var(--success-color);
+        .learn-more-btn:hover {
+            background: #1e7b1e;
+            transform: translateY(-2px);
         }
 
-        .contact-card p {
-            margin-bottom: 0;
+        /* About Section */
+        .about-section {
+            background: var(--background-light);
         }
 
-        .contact-card .highlight-text {
-            font-weight: 600;
-            color: var(--success-color);
+        .about-content {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-size: 1.3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 4px solid var(--accent-gold);
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            color: var(--primary-green);
             margin-bottom: 0.5rem;
         }
-        
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: var(--surface-color);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+        .team-role {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .back-to-top {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-btn {
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
             font-weight: 500;
-            color: #374151;
         }
 
-        input, textarea {
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--success-color);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        input.error, textarea.error {
-            border-color: var(--error-color);
-        }
-
-        .error-message {
-            color: var(--error-color);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .success-message {
-            background: var(--success-bg);
-            color: var(--success-text);
             padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
         }
 
-        /* CTA Section */
-        .cta {
-            background: var(--text-color-primary);
-            color: white;
-            padding: 5rem 0;
-            text-align: center;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
         }
 
-        .cta h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 1rem;
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
         }
 
-        .cta p {
-            font-size: 1.1rem;
-            color: #d1d5db;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .submit-btn {
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: var(--transition);
+            width: 100%;
         }
 
-        .cta-buttons {
+        .submit-btn:hover {
+            background: #1e7b1e;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .contact-item {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Footer */
         footer {
-            background: #111827;
-            color: white;
-            padding: 4rem 0 1.5rem;
+            background: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 5% 2rem;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .footer-section h3 {
-            font-size: 1.3rem;
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
             margin-bottom: 1rem;
-            color: var(--primary-color);
         }
 
-        .footer-section p,
-        .footer-section a {
-            color: #9ca3af;
-            text-decoration: none;
-            line-height: 1.8;
-            transition: color 0.3s ease;
+        .footer-logo span {
+            color: var(--accent-gold);
         }
 
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .social-links {
+        .social-icons {
             display: flex;
+            justify-content: center;
             gap: 1rem;
-            margin-top: 1rem;
+            margin: 2rem 0;
         }
 
-        .social-links a {
+        .social-icon {
+            display: inline-block;
             width: 40px;
             height: 40px;
-            background: #374151;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            text-decoration: none;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 1.5rem;
+            line-height: 40px;
             text-align: center;
-            color: #9ca3af;
+            transition: var(--transition);
+            font-weight: bold;
         }
 
-        /* Utility classes */
-        .text-center { text-align: center; }
-        .mb-4 { margin-bottom: 1rem; }
-        .hidden { display: none; }
-        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .footer-text {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1rem;
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Error and Success Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--surface-color);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                gap: 0;
-            }
-
-            .nav-links.active {
+            .hamburger {
                 display: flex;
             }
 
-            .nav-links a {
-                padding: 1rem;
-                border-bottom: 1px solid #f3f4f6;
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: var(--shadow);
+                transform: translateY(-100vh);
+                transition: var(--transition);
             }
 
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 4rem 0;
+            .nav-menu.active {
+                transform: translateY(0);
             }
 
-            .mission-grid {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .properties-grid {
                 grid-template-columns: 1fr;
             }
 
-            .form-row {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
+            .header-container {
+                padding: 1rem 3%;
             }
 
-            .hero {
-                padding: 3rem 0;
+            .section {
+                padding: 2rem 3%;
             }
 
-            .features, .stats, .contact-section, .cta {
-                padding: 3rem 0;
+            .hero h1 {
+                font-size: 2rem;
             }
 
-            .form-container {
-                padding: 1.5rem;
+            .hero p {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 2rem 3%;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <div class="container">
+        <div class="header-container">
+            <div class="logo" onclick="showPage('home')">Nigeria<span>Homes</span></div>
             <nav>
-                <a href="#" class="logo">Damian UI/UX Hub</a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
-                    <li><a href="#about" class="nav-link" data-page="about">About</a></li>
-                    <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
                 </ul>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </nav>
         </div>
     </header>
-<!--Home page-->
-    <main>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Home Page -->
         <div id="home" class="page active">
+            <!-- Hero Section -->
             <section class="hero">
-                <div class="container">
-                    <h1>Welcome to <span class="highlight">Damian UI/UX Design Hub</span></h1>
-                    <p>Experience the future of web development with our cutting-edge solutions. We create beautiful, responsive, and high-performing websites that drive results.</p>
-                    <a href="#contact" class="btn">Get Started Today</a>
+                <div class="hero-content">
+                    <h1>Damianco Real Estate Company, Nigeria</h1>
+                    <p>Trusted real estate agency for affordable and luxury properties across Nigeria</p>
+                    <button class="cta-button" onclick="scrollToProperties()">Explore Properties</button>
                 </div>
             </section>
 
-            <section class="container">
-                <div class="slider-container">
-                    <div class="slider" id="imageSlider">
-                        <div class="slide active">
-                            <img src="images/StockCake-Focused Data Analysis_1758094867.jpg" alt="Modern Web Development">
-                            <div class="slide-content">
-                                <h3>Modern Web Development</h3>
-                                <p>Building the future with cutting-edge technologies</p>
-                            </div>
-                        </div>
-                        <div class="slide">
-                            <img src="images/StockCake-Browsing Productively_1758095279.jpg" alt="Responsive Design">
-                            <div class="slide-content">
-                                <h3>Responsive Design</h3>
-                                <p>Creating seamless experiences across all devices</p>
-                            </div>
-                        </div>
-                        <div class="slide">
-                            <img src="images/StockCake-Design Workflow Planning_1758094905.jpg" alt="User Experience">
-                            <div class="slide-content">
-                                <h3>User Experience</h3>
-                                <p>Designing intuitive and engaging interfaces</p>
-                            </div>
+            <!-- Featured Properties Section -->
+            <section class="section" id="properties">
+                <h2 class="section-title">Featured Properties</h2>
+                <div class="properties-grid">
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Modern Villa" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Luxury Villa in Lekki</h3>
+                            <p class="property-description">Beautiful 4-bedroom villa with modern amenities, swimming pool, and garden in prestigious Lekki Phase 1.</p>
+                            <p class="property-price">₦45,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Luxury Villa in Lekki', '₦45,000,000')">Learn More</button>
                         </div>
                     </div>
-                    <button class="slider-nav prev" id="prevBtn">‹</button>
-                    <button class="slider-nav next" id="nextBtn">›</button>
-                    <div class="slider-dots" id="sliderDots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features">
-                <div class="container">
-                    <h2 class="section-title">Why Choose Damian?</h2>
-                    <p class="section-subtitle">We combine innovative design with powerful technology to deliver exceptional web experiences.</p>
                     
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">🚀</div>
-                            <h3>Fast Performance</h3>
-                            <p>Lightning-fast loading times and optimized performance for the best user experience.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">⚡</div>
-                            <h3>Modern Technology</h3>
-                            <p>Built with the latest web technologies including HTML5, CSS3, and JavaScript.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🛡️</div>
-                            <h3>Secure & Reliable</h3>
-                            <p>Enterprise-grade security and reliability you can trust for your business.</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📱</div>
-                            <h3>Mobile First</h3>
-                            <p>Designed with mobile users in mind, ensuring perfect experiences on any device.</p>
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Family House" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Family House in Abuja</h3>
+                            <p class="property-description">Spacious 3-bedroom house perfect for families, located in a quiet neighborhood in Abuja with excellent schools nearby.</p>
+                            <p class="property-price">₦25,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Family House in Abuja', '₦25,000,000')">Learn More</button>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section class="cta">
-                <div class="container">
-                    <h2>Ready to Build Something Amazing?</h2>
-                    <p>Join thousands of satisfied clients who have transformed their digital presence with Damian UI/UX Hub.</p>
-                    <div class="cta-buttons">
-                        <a href="#contact" class="btn">Start Your Project</a>
-                        <a href="#" class="btn btn-secondary">View Portfolio</a>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Apartment" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Modern Apartment in Victoria Island</h3>
+                            <p class="property-description">Contemporary 2-bedroom apartment with city views, premium finishes, and 24/7 security in the heart of Lagos.</p>
+                            <p class="property-price">₦35,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Modern Apartment in Victoria Island', '₦35,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Duplex" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Executive Duplex in Port Harcourt</h3>
+                            <p class="property-description">Elegant 5-bedroom duplex with spacious compound, generator house, and modern kitchen in GRA Port Harcourt.</p>
+                            <p class="property-price">₦30,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Executive Duplex in Port Harcourt', '₦30,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Bungalow" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Cozy Bungalow in Ibadan</h3>
+                            <p class="property-description">Charming 3-bedroom bungalow with large yard, perfect for first-time buyers in a developing area of Ibadan.</p>
+                            <p class="property-price">₦15,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Cozy Bungalow in Ibadan', '₦15,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Mansion" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Grand Mansion in Calabar</h3>
+                            <p class="property-description">Magnificent 6-bedroom mansion with guest house, swimming pool, and extensive gardens in prime Calabar location.</p>
+                            <p class="property-price">₦60,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Grand Mansion in Calabar', '₦60,000,000')">Learn More</button>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
-   <!--About us-->
+
+        <!-- About Page -->
         <div id="about" class="page">
-            <section class="hero">
-                <div class="container">
-                    <h1>About <span class="highlight">Damian UI/UX Design Hub</span></h1>
-                    <p>At Damian UI/UX Design Hub, we believe design is more than just making things look attractive — it’s about solving problems, telling stories, and creating experiences that feel natural to the user. Founded with a passion for creativity and technology, we exist to help businesses, startups, and individuals turn their ideas into functional, user-centered digital products. Our approach blends design thinking, research, and innovation, ensuring that every interface we build is not only visually appealing but also effective in guiding users toward their goals.
+            <section class="section about-section">
+                <h2 class="section-title">About DamiancoHomes</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        For over a decade, DamiancoCompany has been the leading real estate agency in Nigeria, 
+                        connecting families with their dream homes across all major cities. We understand the 
+                        Nigerian market better than anyone and provide personalized service that goes beyond 
+                        just buying and selling properties.
                     </p>
-                </div>
-            </section>
-
-            <section class="features">
-                <div class="container">
-                    <div class="mission-grid">
-                        <div>
-                            <h2 class="section-title" style="text-align: left;">Our Mission</h2>
-                            <p style="font-size: 1.1rem; color: var(--text-color-secondary); margin-bottom: 1.5rem;">
-                                At Damian UI/UX design hub, we believe that great design and cutting-edge technology should be accessible to businesses of all sizes. Our mission is to bridge the gap between innovative web solutions and practical business needs.
-                            </p>
-                            <p style="font-size: 1.1rem; color: var(--text-color-secondary); margin-bottom: 2rem;">
-                                We're committed to delivering not just websites, but comprehensive digital experiences that engage users, drive conversions, and help our clients achieve their goals.
-                            </p>
-                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                                <span class="badge">Innovation</span>
-                                <span class="badge">Quality</span>
-                                <span class="badge green">Excellence</span>
-                            </div>
+                    
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3 class="value-title">Trust</h3>
+                            <p>Built on integrity and honest relationships with every client we serve</p>
                         </div>
-                        <div>
-                            <img src="images/StockCake-Diverse tech collaboration_1758094829.jpg" alt="Team collaboration">
+                        <div class="value-card">
+                            <div class="value-icon">🔍</div>
+                            <h3 class="value-title">Transparency</h3>
+                            <p>Clear, upfront communication about every aspect of your property transaction</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🏠</div>
+                            <h3 class="value-title">Local Expertise</h3>
+                            <p>Deep understanding of Nigerian communities, markets, and regulations</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <section class="stats">
-                <div class="container">
-                    <h2 class="section-title">Our Impact in Numbers</h2>
-                    <p class="section-subtitle">These numbers represent the trust our clients place in us.</p>
                     
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="feature-icon">👥</div>
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Happy Clients</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="feature-icon">🏆</div>
-                            <div class="stat-number">50+</div>
-                            <div class="stat-label">Awards Won</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="feature-icon">🎯</div>
-                            <div class="stat-number">1000+</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="feature-icon">⏰</div>
-                            <div class="stat-number">5+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="features">
-                <div class="container">
-                    <h2 class="section-title">Meet Our Team</h2>
-                    <p class="section-subtitle">The creative minds behind Damian UI/UX Hub's success. Each team member brings unique skills and perspectives to every project.</p>
-                    
+                    <h3 class="section-title" style="font-size: 2rem; margin-top: 2rem;">Our Team</h3>
                     <div class="team-grid">
-                        <div class="team-card">
-                            <img src="https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Sarah Johnson" class="team-avatar">
-                            <h3>Sarah Johnson</h3>
-                            <div class="team-role">Lead Designer</div>
-                            <p>Creative visionary with 8 years of design experience.</p>
+                        <div class="team-member">
+                            <img src="StockCake-Regal Couple Portrait_1758361408(1).jpg" alt="Adebayo Johnson" class="team-photo">
+                            <h4 class="team-name">Adebayo Johnson</h4>
+                            <p class="team-role">Managing Director</p>
+                            <p class="team-bio">With 15 years in Nigerian real estate, Adebayo leads our team with passion for connecting families with perfect homes.</p>
                         </div>
-                        <div class="team-card">
-                            <img src="https://images.pexels.com/photos/3778966/pexels-photo-3778966.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Michael Chen" class="team-avatar">
-                            <h3>Michael Chen</h3>
-                            <div class="team-role">Senior Developer</div>
-                            <p>Full-stack developer specializing in modern web technologies.</p>
+                        <div class="team-member">
+                            <img src="StockCake-Fashionable Cultural Attire_1758361373.jpg" alt="Chioma Okafor" class="team-photo">
+                            <h4 class="team-name">Chioma Okafor</h4>
+                            <p class="team-role">Senior Sales Agent</p>
+                            <p class="team-bio">Chioma specializes in luxury properties and has helped over 200 families find their dream homes across Nigeria.</p>
                         </div>
-                        <div class="team-card">
-                            <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Emily Rodriguez" class="team-avatar">
-                            <h3>Emily Rodriguez</h3>
-                            <div class="team-role">UX Specialist</div>
-                            <p>User experience expert focused on creating intuitive interfaces.</p>
+                        <div class="team-member">
+                            <img src="StockCake-Colorful cultural attire_1758361387.jpg" alt="Jenny Onwuatu" class="team-photo">
+                            <h4 class="team-name">Jenny Onwuatu</h4>
+                            <p class="team-role">Property Consultant</p>
+                            <p class="team-bio">Jenny brings expertise in commercial and residential properties, with deep knowledge of Northern Nigeria markets.</p>
                         </div>
                     </div>
+                    
+                    <button class="back-to-top" onclick="scrollToTop()">Back to Top</button>
                 </div>
             </section>
         </div>
-  <!--Contact us page-->
+
+        <!-- Services Page -->
+        <div id="services" class="page">
+            <section class="section">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏡</div>
+                        <h3 class="service-title">Property Sales</h3>
+                        <p class="service-description">
+                            We help you buy and sell residential and commercial properties across Nigeria. 
+                            Our extensive network ensures you get the best deals in the market.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Sales')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3 class="service-title">Property Rentals</h3>
+                        <p class="service-description">
+                            Find the perfect rental property or rent out your property with our comprehensive 
+                            rental management services and tenant screening.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Rentals')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3 class="service-title">Property Valuation</h3>
+                        <p class="service-description">
+                            Get accurate property valuations from our certified professionals. 
+                            Essential for sales, purchases, insurance, and legal purposes.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Valuation')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🏗️</div>
+                        <h3 class="service-title">Property Development</h3>
+                        <p class="service-description">
+                            From land acquisition to project completion, we manage property development 
+                            projects with experienced contractors and architects.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Development')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3 class="service-title">Investment Advisory</h3>
+                        <p class="service-description">
+                            Make informed real estate investment decisions with our market analysis, 
+                            ROI calculations, and investment strategy consulting.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Investment Advisory')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3 class="service-title">Legal Documentation</h3>
+                        <p class="service-description">
+                            Complete legal support for property transactions including title verification, 
+                            contract preparation, and registration processes.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Legal Documentation')">Learn More</button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" onclick="showPage('contact')">Get Started Today</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
         <div id="contact" class="page">
-            <section class="hero">
-                <div class="container">
-                    <h1>Get In <span class="highlight">Touch</span></h1>
-                    <p>Have a project in mind? Let's discuss how we can help you bring your vision to life. We'd love to hear from you!</p>
-                </div>
-            </section>
-
-            <section class="contact-section">
-                <div class="container">
+            <section class="section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-container">
+                    <form class="contact-form" id="contact-form">
+                        <div id="form-messages"></div>
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your property needs..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                    
                     <div class="contact-info">
-                        <div class="contact-card">
-                            <div class="contact-icon">✉️</div>
-                            <h3>Email Us</h3>
-                            <p class="highlight-text">madudamian25@gmail.com</p>
-                            <p>Send us an email anytime</p>
+                        <h3 style="color: var(--primary-green); margin-bottom: 1.5rem;">Get in Touch</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Office Address</strong><br>
+                                123 Victoria Island, Lagos, Nigeria
+                            </div>
                         </div>
-                        <div class="contact-card">
-                            <div class="contact-icon">📞</div>
-                            <h3>Call Us</h3>
-                            <p class="highlight-text">+2348132446354</p>
-                            <p>Mon-Fri from 8am to 6pm</p>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +234 801 234 5678
+                            </div>
                         </div>
-                        <div class="contact-card">
-                            <div class="contact-icon">📍</div>
-                            <h3>Visit Us</h3>
-                            <p class="highlight-text">52 Edeki street, Dawaki, Abuja, Nigeria</p>
-                            <p>San Francisco, CA 94105</p>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <div>
+                                <strong>Email</strong><br>
+                                info@nigeriahomes.com
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-container">
-                        <h2 class="text-center mb-4">Send Us a Message</h2>
-                        <p class="text-center mb-4" style="color: var(--text-color-secondary);">Fill out the form below and we'll get back to you within 24 hours.</p>
+                        <div class="contact-item">
+                            <span class="contact-icon">🕒</span>
+                            <div>
+                                <strong>Business Hours</strong><br>
+                                Mon - Fri: 8:00 AM - 6:00 PM<br>
+                                Sat: 9:00 AM - 4:00 PM<br>
+                                Sun: Closed
+                            </div>
+                        </div>
                         
-                        <div id="successMessage" class="success-message hidden">
-                            <strong>✓ Message Sent!</strong> Thank you for your message. We'll get back to you soon!
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.419404577742!2d3.4205886148821956!3d6.4474073953601515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf4c0aaa4fa4b%3A0x6a5c2a8d96c8e7d5!2sVictoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1635123456789!5m2!1sen!2sng"
+                                loading="lazy">
+                            </iframe>
                         </div>
-
-                        <form id="contactForm">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" id="name" name="name" placeholder="Enter your full name">
-                                    <div class="error-message" id="nameError"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" placeholder="Enter your email address">
-                                    <div class="error-message" id="emailError"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" placeholder="What's this about?">
-                                <div class="error-message" id="subjectError"></div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" placeholder="Tell us more about your project..."></textarea>
-                                <div class="error-message" id="messageError"></div>
-                            </div>
-                            
-                            <button type="submit" class="btn" style="width: 100%;" id="submitBtn">
-                                Send Message
-                            </button>
-                        </form>
                     </div>
                 </div>
             </section>
         </div>
-    </main>
-<!--Footer-->
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Damian UI/UX</h3>
-                    <p>Creating beautiful, responsive, and modern web experiences with cutting-edge technologies and thoughtful design.</p>
-                    <div class="social-links">
-                        <a href="https://twitter.com" aria-label="Twitter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-                        </a>
-                        <a href="https://linkedin.com" aria-label="LinkedIn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        </a>
-                        <a href="https://instagram.com" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p>52 Edeki street, Dawaki, Abuja, Nigeria</p>
-                    <p><strong>Email:</strong> madudamian25@gmail.com</p>
-                    <p><strong>Phone:</strong> +2348132446354</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Newsletter</h3>
-                    <p>Stay updated with our latest news and offers.</p>
-                    <form style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                        <input type="email" placeholder="Your email address" style="flex-grow: 1; border: none; padding: 0.75rem; border-radius: 0.5rem;">
-                        <button type="submit" class="btn" style="padding: 0.75rem 1.5rem; white-space: nowrap;">Subscribe</button>
-                    </form>
-                </div>
+        <div class="footer-content">
+            <div class="footer-logo">Damianco<span>Homes</span></div>
+            <p>Your trusted partner in finding the perfect home in Nigeria</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">t</a>
+                <a href="#" class="social-icon">i</a>
+                <a href="#" class="social-icon">w</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Damian UI/UX Hub. All rights reserved.</p>
+            <div class="footer-text">
+                <p>&copy; 2024 Damianco  Real Estate. All rights reserved. | Made with ❤️ in Nigeria</p>
             </div>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
-            const navItems = document.querySelectorAll('.nav-link');
+        // Page Navigation System
+        function showPage(pageId) {
+            // Hide all pages
             const pages = document.querySelectorAll('.page');
-            const slider = document.getElementById('imageSlider');
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const sliderDots = document.getElementById('sliderDots');
-            const contactForm = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-
-            let currentSlide = 0;
-
-            // Mobile Menu Toggle
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
+            pages.forEach(page => {
+                page.classList.remove('active');
             });
-
-            // Page Navigation Logic
-            function showPage(pageId) {
-                pages.forEach(page => page.classList.remove('active'));
-                document.getElementById(pageId).classList.add('active');
-
-                // Update active navigation link
-                navItems.forEach(link => link.classList.remove('active'));
-                document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
             }
+            
+            // Close mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            // Initially show the home page
-            showPage('home');
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
 
-            // Add click listeners to navigation links
-            navLinks.addEventListener('click', (e) => {
-                if (e.target.matches('.nav-link')) {
-                    e.preventDefault();
-                    const pageId = e.target.dataset.page;
-                    showPage(pageId);
-                    navLinks.classList.remove('active'); // Close menu after selection
-                }
-            });
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-            // Image Slider Functionality
-            function updateSlider() {
-                slides.forEach((slide, index) => {
-                    slide.classList.remove('active');
-                    if (index === currentSlide) {
-                        slide.classList.add('active');
-                    }
-                });
-
-                const dots = sliderDots.querySelectorAll('.dot');
-                dots.forEach(dot => dot.classList.remove('active'));
-                dots[currentSlide].classList.add('active');
-            }
-
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                updateSlider();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateSlider();
-            });
-
-            sliderDots.addEventListener('click', (e) => {
-                if (e.target.matches('.dot')) {
-                    currentSlide = parseInt(e.target.dataset.slide);
-                    updateSlider();
-                }
-            });
-
-            // Auto-play slider
-            setInterval(() => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateSlider();
-            }, 5000);
-
-            // Contact Form Validation
-            contactForm.addEventListener('submit', (e) => {
+        // Navigation link event listeners
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
-                let isValid = true;
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData.entries());
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
 
-                const requiredFields = ['name', 'email', 'subject', 'message'];
+        // Explore Properties button functionality
+        function scrollToProperties() {
+            const propertiesSection = document.getElementById('properties');
+            propertiesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Back to Top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Property details popup
+        function showPropertyDetails(title, price) {
+            alert(`🏠 ${title}\n\n💰 Price: ${price}\n\n📞 For more details, please contact us:\n+234 801 234 5678\ninfo@nigeriahomes.com\n\nOur agents will be happy to schedule a viewing!`);
+        }
+
+        // Service details popup
+        function showServiceDetails(serviceName) {
+            let details = '';
+            switch(serviceName) {
+                case 'Property Sales':
+                    details = 'Our property sales service includes:\n• Market analysis and pricing\n• Professional photography\n• Marketing and advertising\n• Buyer screening and negotiations\n• Legal documentation support\n• Post-sale follow-up';
+                    break;
+                case 'Property Rentals':
+                    details = 'Our rental services include:\n• Tenant screening and background checks\n• Rental price optimization\n• Property maintenance coordination\n• Rent collection and management\n• Legal compliance and documentation\n• 24/7 emergency support';
+                    break;
+                case 'Property Valuation':
+                    details = 'Our valuation services include:\n• Comprehensive market analysis\n• Physical property inspection\n• Comparable sales analysis\n• Detailed valuation report\n• Insurance and legal valuations\n• Investment potential assessment';
+                    break;
+                case 'Property Development':
+                    details = 'Our development services include:\n• Land acquisition assistance\n• Architectural design coordination\n• Construction management\n• Permit and approval processing\n• Quality control and inspections\n• Project timeline management';
+                    break;
+                case 'Investment Advisory':
+                    details = 'Our investment advisory includes:\n• Market trend analysis\n• ROI calculations and projections\n• Risk assessment and mitigation\n• Portfolio diversification strategies\n• Tax optimization advice\n• Long-term investment planning';
+                    break;
+                case 'Legal Documentation':
+                    details = 'Our legal services include:\n• Title verification and searches\n• Contract preparation and review\n• Property registration processes\n• Due diligence investigations\n• Dispute resolution support\n• Compliance with local regulations';
+                    break;
+            }
+            alert(`${serviceName}\n\n${details}\n\n📞 Contact us for more information:\n+234 801 234 5678\ninfo@nigeriahomes.com`);
+        }
+
+        // Contact Form Validation and Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form elements
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const messageContainer = document.getElementById('form-messages');
+            
+            // Clear previous messages
+            messageContainer.innerHTML = '';
+            
+            // Validation
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Check required fields
+            if (!fullName) {
+                isValid = false;
+                errorMessage += 'Full name is required.<br>';
+            }
+            
+            if (!email) {
+                isValid = false;
+                errorMessage += 'Email address is required.<br>';
+            } else {
+                // Email format validation
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                requiredFields.forEach(field => {
-                    const input = document.getElementById(field);
-                    const errorDiv = document.getElementById(`${field}Error`);
-                    input.classList.remove('error');
-                    errorDiv.textContent = '';
-
-                    if (!data[field].trim()) {
-                        input.classList.add('error');
-                        errorDiv.textContent = `${input.previousElementSibling.textContent.replace(':', '')} is required.`;
-                        isValid = false;
-                    }
-                });
-
-                if (data.email && !emailRegex.test(data.email)) {
-                    const emailInput = document.getElementById('email');
-                    const emailError = document.getElementById('emailError');
-                    emailInput.classList.add('error');
-                    emailError.textContent = 'Please enter a valid email address.';
+                if (!emailRegex.test(email)) {
                     isValid = false;
+                    errorMessage += 'Please enter a valid email address.<br>';
                 }
+            }
+            
+            if (!phone) {
+                isValid = false;
+                errorMessage += 'Phone number is required.<br>';
+            } else {
+                // Basic phone validation (at least 10 digits)
+                const phoneRegex = /^\+?[\d\s\-\(\)]{10,}$/;
+                if (!phoneRegex.test(phone)) {
+                    isValid = false;
+                    errorMessage += 'Please enter a valid phone number.<br>';
+                }
+            }
+            
+            if (!message) {
+                isValid = false;
+                errorMessage += 'Message is required.<br>';
+            } else if (message.length < 10) {
+                isValid = false;
+                errorMessage += 'Message must be at least 10 characters long.<br>';
+            }
+            
+            // Display results
+            if (!isValid) {
+                messageContainer.innerHTML = `<div class="message error-message">${errorMessage}</div>`;
+                messageContainer.style.display = 'block';
+                
+                // Scroll to show error message
+                messageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // Success - show success message
+                messageContainer.innerHTML = `
+                    <div class="message success-message">
+                        <strong>Thank you, ${fullName}!</strong><br>
+                        Your message has been sent successfully. Our team will contact you within 24 hours at ${email} or ${phone}.<br><br>
+                        <strong>Your Message:</strong><br>
+                        "${message}"
+                    </div>
+                `;
+                messageContainer.style.display = 'block';
+                
+                // Clear form
+                document.getElementById('contact-form').reset();
+                
+                // Scroll to show success message
+                messageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto-hide success message after 8 seconds
+                setTimeout(() => {
+                    messageContainer.style.display = 'none';
+                }, 8000);
+            }
+        });
 
-                if (isValid) {
-                    // Simulate form submission
-                    submitBtn.textContent = 'Sending...';
-                    submitBtn.disabled = true;
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#ffffff';
+                header.style.backdropFilter = 'none';
+            }
+        });
 
-                    setTimeout(() => {
-                        submitBtn.textContent = 'Message Sent!';
-                        successMessage.classList.remove('hidden');
-                        contactForm.reset();
-                        
-                        setTimeout(() => {
-                            successMessage.classList.add('hidden');
-                            submitBtn.textContent = 'Send Message';
-                            submitBtn.disabled = false;
-                        }, 5000);
+        // Add loading animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-                    }, 2000);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
                 }
             });
+        }, observerOptions);
+
+        // Observe cards for animation
+        document.querySelectorAll('.property-card, .value-card, .team-member, .service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+        // Add property card click animation
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('learn-more-btn')) {
+                    const title = this.querySelector('.property-title').textContent;
+                    const price = this.querySelector('.property-price').textContent;
+                    showPropertyDetails(title, price);
+                }
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('button, .cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS animation for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add typing effect to hero text (runs once on page load)
+        function typeWriter(element, text, speed = 100) {
+            element.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero h1');
+                if (heroTitle) {
+                    const originalText = heroTitle.textContent;
+                    typeWriter(heroTitle, originalText, 80);
+                }
+            }, 500);
+        });
+
+        // Initialize page on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
         });
     </script>
 </body>
