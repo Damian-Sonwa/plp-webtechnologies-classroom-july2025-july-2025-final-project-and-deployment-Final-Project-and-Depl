@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DiamonCrest Estates - Find Your Dream Home in Nigeria</title>
+    <title>DiamondCrest Estates - Find Your Dream Home in Nigeria</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 5%;
+            padding: 1rem 5%;
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -83,19 +83,19 @@
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             flex-shrink: 0;
             display: block;
         }
 
         .logo-text {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--champagne);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             line-height: 1;
             white-space: nowrap;
@@ -181,8 +181,8 @@
 
         /* Page Container */
         .page-container {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
         }
 
         .page {
@@ -214,8 +214,9 @@
             text-align: center;
             color: var(--white);
             position: relative;
-            margin-top: -80px;
+            margin-top: -70px;
             overflow: hidden;
+            padding-top: 70px;
         }
 
         .hero-video {
@@ -999,8 +1000,12 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
-                padding: 1.2rem 4%;
+                padding: 0.9rem 4%;
                 flex-wrap: nowrap;
+            }
+
+            .page-container {
+                margin-top: 65px;
             }
 
             .hamburger {
@@ -1016,8 +1021,13 @@
             }
 
             .logo-text {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 letter-spacing: 1px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
             }
 
             .nav-menu {
@@ -1039,6 +1049,11 @@
 
             .nav-menu.active {
                 transform: translateY(0);
+            }
+
+            .hero {
+                margin-top: -65px;
+                padding-top: 65px;
             }
 
             .hero h1 {
@@ -1084,8 +1099,12 @@
 
         @media (max-width: 480px) {
             .header-container {
-                padding: 1rem 3%;
+                padding: 0.8rem 3%;
                 gap: 0.5rem;
+            }
+
+            .page-container {
+                margin-top: 60px;
             }
 
             .logo {
@@ -1169,7 +1188,7 @@
                     <line x1="67" y1="58" x2="67" y2="68" stroke="#800020" stroke-width="1"/>
                     <line x1="62" y1="63" x2="72" y2="63" stroke="#800020" stroke-width="1"/>
                 </svg>
-                <span class="logo-text">DiamonCrest <span>Estates</span></span>
+                <span class="logo-text">DiamondCrest <span>Estates</span></span>
             </div>
             <nav>
                 <ul class="nav-menu" id="nav-menu">
@@ -1201,7 +1220,7 @@
                 </video>
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <h1>DiamonCrest Estates, Nigeria</h1>
+                    <h1>DiamondCrest Estates, Nigeria</h1>
                     <p>Your premier destination for luxury estates, modern apartments, and prime commercial properties across Nigeria. Transforming real estate dreams into reality with expertise and personalized service.</p>
                     <button class="cta-button" onclick="scrollToProperties()">Explore Properties</button>
                 </div>
@@ -1277,10 +1296,10 @@
         <!-- About Page -->
         <div id="about" class="page">
             <section class="section about-section">
-                <h2 class="section-title">About DiamonCrest Estates</h2>
+                <h2 class="section-title">About DiamondCrest Estates</h2>
                 <div class="about-content">
                     <p class="about-text">
-                        For over a decade, DiamonCrest Estates has been the leading real estate agency in Nigeria, 
+                        For over a decade, DiamondCrest Estates has been the leading real estate agency in Nigeria, 
                         connecting families with their dream homes across all major cities. We understand the 
                         Nigerian market better than anyone and provide personalized service that goes beyond 
                         just buying and selling properties.
@@ -1477,7 +1496,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">DiamonCrest <span>Estates</span></div>
+            <div class="footer-logo">DiamondCrest <span>Estates</span></div>
             <p>Your trusted partner in finding the perfect home in Nigeria</p>
             <div class="social-icons">
                 <a href="#" class="social-icon">f</a>
@@ -1486,7 +1505,7 @@
                 <a href="#" class="social-icon">w</a>
             </div>
             <div class="footer-text">
-                <p>&copy; 2024 DiamonCrest Estates. All rights reserved. | Made with ❤️ in Nigeria</p>
+                <p>&copy; 2024 DiamondCrest Estates. All rights reserved. | Made with ❤️ in Nigeria</p>
             </div>
         </div>
     </footer>
