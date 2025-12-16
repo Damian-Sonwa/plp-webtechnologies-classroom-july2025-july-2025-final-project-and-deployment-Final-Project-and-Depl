@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NigeriaHomes - Find Your Dream Home in Nigeria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --burgundy: #800020;
+            --burgundy-dark: #5C0016;
+            --burgundy-light: #A0002A;
+            --champagne: #F7E7CE;
+            --champagne-dark: #E8D5B7;
+            --champagne-light: #FFF4E6;
+            --metallic-gold: #D4AF37;
+            --steel-gray: #2C2C2C;
+            --charcoal: #1A1A1A;
+            --text-light: #E5E5E5;
+            --white: #FFFFFF;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-heavy: 0 12px 40px rgba(0, 0, 0, 0.6);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            scroll-behavior: smooth;
+            background: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(128, 0, 32, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 2px solid var(--burgundy);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--champagne);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo span {
+            color: var(--metallic-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--champagne);
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            color: var(--metallic-gold);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--burgundy), var(--metallic-gold));
+            transition: var(--transition);
+            box-shadow: 0 0 10px var(--metallic-gold);
+        }
+
+        .nav-menu li a:hover::after,
+        .nav-menu li a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 4px;
+            background: var(--champagne);
+            transition: var(--transition);
+            box-shadow: 0 0 5px rgba(247, 231, 206, 0.5);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Page Container */
+        .page-container {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            margin-top: -80px;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.85) 0%, rgba(26, 26, 26, 0.75) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--champagne);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            color: var(--champagne-light);
+            font-weight: 300;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            animation: fadeInUp 1s ease 0.4s both;
+            border: 3px solid var(--metallic-gold);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.5);
+            border-color: var(--champagne);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            color: var(--champagne);
+            margin-bottom: 4rem;
+            position: relative;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--metallic-gold), transparent);
+            box-shadow: 0 0 15px var(--metallic-gold);
+        }
+
+        .section-title::before {
+            left: 50%;
+            transform: translateX(-50%) translateX(-80px);
+        }
+
+        .section-title::after {
+            right: 50%;
+            transform: translateX(50%) translateX(80px);
+        }
+
+        /* Properties Section */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .property-card {
+            background: linear-gradient(135deg, var(--steel-gray) 0%, var(--charcoal) 100%);
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid var(--burgundy);
+            position: relative;
+        }
+
+        .property-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .property-card:hover::before {
+            opacity: 1;
+        }
+
+        .property-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.5), 0 0 30px rgba(212, 175, 55, 0.3);
+            border-color: var(--metallic-gold);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+            transition: var(--transition);
+        }
+
+        .property-card:hover .property-image {
+            filter: grayscale(0%) contrast(1.2);
+            transform: scale(1.1);
+        }
+
+        .property-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .property-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--champagne);
+            margin-bottom: 0.8rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .property-description {
+            color: var(--champagne-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .property-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--metallic-gold);
+            margin-bottom: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .learn-more-btn {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            border: 2px solid var(--metallic-gold);
+            padding: 1rem 2rem;
+            border-radius: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Oswald', sans-serif;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .learn-more-btn:hover {
+            background: linear-gradient(135deg, var(--burgundy-light) 0%, var(--burgundy) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(128, 0, 32, 0.6), 0 0 20px rgba(212, 175, 55, 0.4);
+            border-color: var(--champagne);
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--steel-gray) 100%);
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(128,0,32,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .about-content {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: var(--champagne-dark);
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+            padding: 2.5rem;
+            border-radius: 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid var(--burgundy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--metallic-gold);
+            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.5), 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            color: var(--metallic-gold);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            color: var(--champagne);
+            margin-bottom: 1rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .value-card p {
+            color: var(--champagne-dark);
+            line-height: 1.8;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+            padding: 2.5rem;
+            border-radius: 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid var(--burgundy);
+            position: relative;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--metallic-gold);
+            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.5), 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 0;
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            border: 4px solid var(--metallic-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            color: var(--champagne);
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-role {
+            color: var(--metallic-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .team-bio {
+            color: var(--champagne-dark);
+            line-height: 1.8;
+        }
+
+        .back-to-top {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            border: 3px solid var(--metallic-gold);
+            padding: 1.2rem 3rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 3rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(128, 0, 32, 0.6), 0 0 30px rgba(212, 175, 55, 0.4);
+            border-color: var(--champagne);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+            padding: 2.5rem;
+            border-radius: 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid var(--burgundy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::after {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.5), 0 0 30px rgba(212, 175, 55, 0.3);
+            border-color: var(--metallic-gold);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: var(--metallic-gold);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+        }
+
+        .service-title {
+            font-size: 1.6rem;
+            color: var(--champagne);
+            margin-bottom: 1.2rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-description {
+            color: var(--champagne-dark);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .service-btn {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            border: 2px solid var(--metallic-gold);
+            padding: 1rem 2rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Oswald', sans-serif;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(128, 0, 32, 0.6), 0 0 20px rgba(212, 175, 55, 0.4);
+            border-color: var(--champagne);
+            background: linear-gradient(135deg, var(--burgundy-light) 0%, var(--burgundy) 100%);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            padding: 2.5rem;
+            border-radius: 0;
+            box-shadow: var(--shadow-heavy);
+            border: 2px solid var(--burgundy);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--champagne);
+            font-weight: 600;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid var(--burgundy);
+            border-radius: 0;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: rgba(26, 26, 26, 0.8);
+            color: var(--champagne);
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--metallic-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            background: rgba(44, 44, 44, 0.9);
+        }
+
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            border: 3px solid var(--metallic-gold);
+            padding: 1.2rem 2rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: var(--transition);
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--burgundy-light) 0%, var(--burgundy) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(128, 0, 32, 0.6), 0 0 30px rgba(212, 175, 55, 0.4);
+            border-color: var(--champagne);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            padding: 2.5rem;
+            border-radius: 0;
+            border: 2px solid var(--burgundy);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .contact-info h3 {
+            color: var(--champagne);
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--metallic-gold);
+            margin-right: 1.5rem;
+            width: 40px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+        }
+
+        .contact-item strong {
+            color: var(--champagne);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item div {
+            color: var(--champagne-dark);
+            line-height: 1.8;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            height: 350px;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--burgundy);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(30%) contrast(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, var(--charcoal) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            text-align: center;
+            padding: 4rem 5% 2rem;
+            border-top: 3px solid var(--metallic-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/></pattern></defs><rect width="60" height="60" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .footer-logo span {
+            color: var(--metallic-gold);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+
+        .footer-content p {
+            color: var(--champagne-dark);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--champagne);
+            text-decoration: none;
+            border-radius: 0;
+            line-height: 50px;
+            text-align: center;
+            transition: var(--transition);
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid var(--metallic-gold);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(128, 0, 32, 0.6), 0 0 25px rgba(212, 175, 55, 0.5);
+            border-color: var(--champagne);
+            background: linear-gradient(135deg, var(--burgundy-light) 0%, var(--burgundy) 100%);
+        }
+
+        .footer-text {
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            color: var(--champagne-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Error and Success Messages */
+        .message {
+            padding: 1.5rem;
+            border-radius: 0;
+            margin-bottom: 1.5rem;
+            display: none;
+            border: 2px solid;
+            font-weight: 500;
+        }
+
+        .success-message {
+            background: rgba(26, 26, 26, 0.95);
+            color: var(--champagne);
+            border-color: var(--metallic-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .error-message {
+            background: rgba(26, 26, 26, 0.95);
+            color: var(--champagne);
+            border-color: var(--burgundy);
+            box-shadow: 0 0 20px rgba(128, 0, 32, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 26, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                padding: 3rem 0;
+                box-shadow: var(--shadow-heavy);
+                transform: translateY(-100vh);
+                transition: var(--transition);
+                border-top: 2px solid var(--burgundy);
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1.2rem 3%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 3%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            footer {
+                padding: 3rem 3%;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo" onclick="showPage('home')">Nigeria<span>Homes</span></div>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-page="services">Services</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="https://videos.pexels.com/video-files/3045163/3045163-hd_1920_1080_30fps.mp4" type="video/mp4">
+                    <source src="https://videos.pexels.com/video-files/2491284/2491284-hd_1920_1080_30fps.mp4" type="video/mp4">
+                    <!-- Fallback background image -->
+                    <img src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Background" style="width: 100%; height: 100%; object-fit: cover;">
+                </video>
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1>Damianco Real Estate Company, Nigeria</h1>
+                    <p>Trusted real estate agency for affordable and luxury properties across Nigeria</p>
+                    <button class="cta-button" onclick="scrollToProperties()">Explore Properties</button>
+                </div>
+            </section>
+
+            <!-- Featured Properties Section -->
+            <section class="section" id="properties">
+                <h2 class="section-title">Featured Properties</h2>
+                <div class="properties-grid">
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Modern Villa" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Luxury Villa in Lekki</h3>
+                            <p class="property-description">Beautiful 4-bedroom villa with modern amenities, swimming pool, and garden in prestigious Lekki Phase 1.</p>
+                            <p class="property-price">₦45,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Luxury Villa in Lekki', '₦45,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Family House" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Family House in Abuja</h3>
+                            <p class="property-description">Spacious 3-bedroom house perfect for families, located in a quiet neighborhood in Abuja with excellent schools nearby.</p>
+                            <p class="property-price">₦25,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Family House in Abuja', '₦25,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Apartment" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Modern Apartment in Victoria Island</h3>
+                            <p class="property-description">Contemporary 2-bedroom apartment with city views, premium finishes, and 24/7 security in the heart of Lagos.</p>
+                            <p class="property-price">₦35,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Modern Apartment in Victoria Island', '₦35,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Duplex" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Executive Duplex in Port Harcourt</h3>
+                            <p class="property-description">Elegant 5-bedroom duplex with spacious compound, generator house, and modern kitchen in GRA Port Harcourt.</p>
+                            <p class="property-price">₦30,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Executive Duplex in Port Harcourt', '₦30,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Bungalow" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Cozy Bungalow in Ibadan</h3>
+                            <p class="property-description">Charming 3-bedroom bungalow with large yard, perfect for first-time buyers in a developing area of Ibadan.</p>
+                            <p class="property-price">₦15,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Cozy Bungalow in Ibadan', '₦15,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                    
+                    <div class="property-card">
+                        <img src="https://images.pexels.com/photos/1475938/pexels-photo-1475938.jpeg?auto=compress&cs=tinysrgb&w=500&h=300&fit=crop" alt="Mansion" class="property-image">
+                        <div class="property-content">
+                            <h3 class="property-title">Grand Mansion in Calabar</h3>
+                            <p class="property-description">Magnificent 6-bedroom mansion with guest house, swimming pool, and extensive gardens in prime Calabar location.</p>
+                            <p class="property-price">₦60,000,000</p>
+                            <button class="learn-more-btn" onclick="showPropertyDetails('Grand Mansion in Calabar', '₦60,000,000')">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="section about-section">
+                <h2 class="section-title">About DamiancoHomes</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        For over a decade, DamiancoCompany has been the leading real estate agency in Nigeria, 
+                        connecting families with their dream homes across all major cities. We understand the 
+                        Nigerian market better than anyone and provide personalized service that goes beyond 
+                        just buying and selling properties.
+                    </p>
+                    
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3 class="value-title">Trust</h3>
+                            <p>Built on integrity and honest relationships with every client we serve</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔍</div>
+                            <h3 class="value-title">Transparency</h3>
+                            <p>Clear, upfront communication about every aspect of your property transaction</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🏠</div>
+                            <h3 class="value-title">Local Expertise</h3>
+                            <p>Deep understanding of Nigerian communities, markets, and regulations</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-title" style="font-size: 2rem; margin-top: 2rem;">Our Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <img src="StockCake-Regal Couple Portrait_1758361408(1).jpg" alt="Adebayo Johnson" class="team-photo">
+                            <h4 class="team-name">Adebayo Johnson</h4>
+                            <p class="team-role">Managing Director</p>
+                            <p class="team-bio">With 15 years in Nigerian real estate, Adebayo leads our team with passion for connecting families with perfect homes.</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="StockCake-Fashionable Cultural Attire_1758361373.jpg" alt="Chioma Okafor" class="team-photo">
+                            <h4 class="team-name">Chioma Okafor</h4>
+                            <p class="team-role">Senior Sales Agent</p>
+                            <p class="team-bio">Chioma specializes in luxury properties and has helped over 200 families find their dream homes across Nigeria.</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="StockCake-Colorful cultural attire_1758361387.jpg" alt="Jenny Onwuatu" class="team-photo">
+                            <h4 class="team-name">Jenny Onwuatu</h4>
+                            <p class="team-role">Property Consultant</p>
+                            <p class="team-bio">Jenny brings expertise in commercial and residential properties, with deep knowledge of Northern Nigeria markets.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="back-to-top" onclick="scrollToTop()">Back to Top</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services" class="page">
+            <section class="section">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏡</div>
+                        <h3 class="service-title">Property Sales</h3>
+                        <p class="service-description">
+                            We help you buy and sell residential and commercial properties across Nigeria. 
+                            Our extensive network ensures you get the best deals in the market.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Sales')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3 class="service-title">Property Rentals</h3>
+                        <p class="service-description">
+                            Find the perfect rental property or rent out your property with our comprehensive 
+                            rental management services and tenant screening.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Rentals')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3 class="service-title">Property Valuation</h3>
+                        <p class="service-description">
+                            Get accurate property valuations from our certified professionals. 
+                            Essential for sales, purchases, insurance, and legal purposes.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Valuation')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🏗️</div>
+                        <h3 class="service-title">Property Development</h3>
+                        <p class="service-description">
+                            From land acquisition to project completion, we manage property development 
+                            projects with experienced contractors and architects.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Property Development')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">💼</div>
+                        <h3 class="service-title">Investment Advisory</h3>
+                        <p class="service-description">
+                            Make informed real estate investment decisions with our market analysis, 
+                            ROI calculations, and investment strategy consulting.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Investment Advisory')">Learn More</button>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3 class="service-title">Legal Documentation</h3>
+                        <p class="service-description">
+                            Complete legal support for property transactions including title verification, 
+                            contract preparation, and registration processes.
+                        </p>
+                        <button class="service-btn" onclick="showServiceDetails('Legal Documentation')">Learn More</button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" onclick="showPage('contact')">Get Started Today</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <section class="section">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-container">
+                    <form class="contact-form" id="contact-form">
+                        <div id="form-messages"></div>
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your property needs..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                    
+                    <div class="contact-info">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1.5rem;">Get in Touch</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Office Address</strong><br>
+                                123 Victoria Island, Lagos, Nigeria
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <strong>Phone</strong><br>
+                                +234 801 234 5678
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <div>
+                                <strong>Email</strong><br>
+                                info@nigeriahomes.com
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🕒</span>
+                            <div>
+                                <strong>Business Hours</strong><br>
+                                Mon - Fri: 8:00 AM - 6:00 PM<br>
+                                Sat: 9:00 AM - 4:00 PM<br>
+                                Sun: Closed
+                            </div>
+                        </div>
+                        
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.419404577742!2d3.4205886148821956!3d6.4474073953601515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf4c0aaa4fa4b%3A0x6a5c2a8d96c8e7d5!2sVictoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1635123456789!5m2!1sen!2sng"
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Damianco<span>Homes</span></div>
+            <p>Your trusted partner in finding the perfect home in Nigeria</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon">f</a>
+                <a href="#" class="social-icon">t</a>
+                <a href="#" class="social-icon">i</a>
+                <a href="#" class="social-icon">w</a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2024 Damianco  Real Estate. All rights reserved. | Made with ❤️ in Nigeria</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation System
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Close mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Navigation link event listeners
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+
+        // Explore Properties button functionality
+        function scrollToProperties() {
+            const propertiesSection = document.getElementById('properties');
+            propertiesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Back to Top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Property details popup
+        function showPropertyDetails(title, price) {
+            alert(`🏠 ${title}\n\n💰 Price: ${price}\n\n📞 For more details, please contact us:\n+234 801 234 5678\ninfo@nigeriahomes.com\n\nOur agents will be happy to schedule a viewing!`);
+        }
+
+        // Service details popup
+        function showServiceDetails(serviceName) {
+            let details = '';
+            switch(serviceName) {
+                case 'Property Sales':
+                    details = 'Our property sales service includes:\n• Market analysis and pricing\n• Professional photography\n• Marketing and advertising\n• Buyer screening and negotiations\n• Legal documentation support\n• Post-sale follow-up';
+                    break;
+                case 'Property Rentals':
+                    details = 'Our rental services include:\n• Tenant screening and background checks\n• Rental price optimization\n• Property maintenance coordination\n• Rent collection and management\n• Legal compliance and documentation\n• 24/7 emergency support';
+                    break;
+                case 'Property Valuation':
+                    details = 'Our valuation services include:\n• Comprehensive market analysis\n• Physical property inspection\n• Comparable sales analysis\n• Detailed valuation report\n• Insurance and legal valuations\n• Investment potential assessment';
+                    break;
+                case 'Property Development':
+                    details = 'Our development services include:\n• Land acquisition assistance\n• Architectural design coordination\n• Construction management\n• Permit and approval processing\n• Quality control and inspections\n• Project timeline management';
+                    break;
+                case 'Investment Advisory':
+                    details = 'Our investment advisory includes:\n• Market trend analysis\n• ROI calculations and projections\n• Risk assessment and mitigation\n• Portfolio diversification strategies\n• Tax optimization advice\n• Long-term investment planning';
+                    break;
+                case 'Legal Documentation':
+                    details = 'Our legal services include:\n• Title verification and searches\n• Contract preparation and review\n• Property registration processes\n• Due diligence investigations\n• Dispute resolution support\n• Compliance with local regulations';
+                    break;
+            }
+            alert(`${serviceName}\n\n${details}\n\n📞 Contact us for more information:\n+234 801 234 5678\ninfo@nigeriahomes.com`);
+        }
+
+        // Contact Form Validation and Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form elements
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const messageContainer = document.getElementById('form-messages');
+            
+            // Clear previous messages
+            messageContainer.innerHTML = '';
+            
+            // Validation
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Check required fields
+            if (!fullName) {
+                isValid = false;
+                errorMessage += 'Full name is required.<br>';
+            }
+            
+            if (!email) {
+                isValid = false;
+                errorMessage += 'Email address is required.<br>';
+            } else {
+                // Email format validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    isValid = false;
+                    errorMessage += 'Please enter a valid email address.<br>';
+                }
+            }
+            
+            if (!phone) {
+                isValid = false;
+                errorMessage += 'Phone number is required.<br>';
+            } else {
+                // Basic phone validation (at least 10 digits)
+                const phoneRegex = /^\+?[\d\s\-\(\)]{10,}$/;
+                if (!phoneRegex.test(phone)) {
+                    isValid = false;
+                    errorMessage += 'Please enter a valid phone number.<br>';
+                }
+            }
+            
+            if (!message) {
+                isValid = false;
+                errorMessage += 'Message is required.<br>';
+            } else if (message.length < 10) {
+                isValid = false;
+                errorMessage += 'Message must be at least 10 characters long.<br>';
+            }
+            
+            // Display results
+            if (!isValid) {
+                messageContainer.innerHTML = `<div class="message error-message">${errorMessage}</div>`;
+                messageContainer.style.display = 'block';
+                
+                // Scroll to show error message
+                messageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // Success - show success message
+                messageContainer.innerHTML = `
+                    <div class="message success-message">
+                        <strong>Thank you, ${fullName}!</strong><br>
+                        Your message has been sent successfully. Our team will contact you within 24 hours at ${email} or ${phone}.<br><br>
+                        <strong>Your Message:</strong><br>
+                        "${message}"
+                    </div>
+                `;
+                messageContainer.style.display = 'block';
+                
+                // Clear form
+                document.getElementById('contact-form').reset();
+                
+                // Scroll to show success message
+                messageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto-hide success message after 8 seconds
+                setTimeout(() => {
+                    messageContainer.style.display = 'none';
+                }, 8000);
+            }
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 26, 26, 0.98)';
+                header.style.backdropFilter = 'blur(15px)';
+                header.style.boxShadow = '0 4px 30px rgba(128, 0, 32, 0.5)';
+            } else {
+                header.style.background = 'rgba(26, 26, 26, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+                header.style.boxShadow = '0 4px 20px rgba(128, 0, 32, 0.3)';
+            }
+        });
+
+        // Add loading animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards for animation
+        document.querySelectorAll('.property-card, .value-card, .team-member, .service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+        // Add property card click animation
+        document.querySelectorAll('.property-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('learn-more-btn')) {
+                    const title = this.querySelector('.property-title').textContent;
+                    const price = this.querySelector('.property-price').textContent;
+                    showPropertyDetails(title, price);
+                }
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('button, .cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS animation for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add typing effect to hero text (runs once on page load)
+        function typeWriter(element, text, speed = 100) {
+            element.textContent = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const heroTitle = document.querySelector('.hero h1');
+                if (heroTitle) {
+                    const originalText = heroTitle.textContent;
+                    typeWriter(heroTitle, originalText, 80);
+                }
+            }, 500);
+        });
+
+        // Initialize page on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
