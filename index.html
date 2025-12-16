@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NigeriaHomes - Find Your Dream Home in Nigeria</title>
+    <title>DamiancoHomes - Find Your Dream Home in Nigeria</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -64,17 +64,35 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
             font-family: 'Oswald', sans-serif;
             font-size: 2rem;
             font-weight: 700;
             color: var(--champagne);
-            cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1;
         }
 
-        .logo span {
+        .logo-text span {
             color: var(--metallic-gold);
             text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
@@ -1031,7 +1049,12 @@
                 padding: 1.2rem 3%;
             }
 
-            .logo {
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
                 font-size: 1.5rem;
             }
 
@@ -1067,7 +1090,40 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo" onclick="showPage('home')">Nigeria<span>Homes</span></div>
+            <div class="logo" onclick="showPage('home')">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#F7E7CE;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- House base -->
+                    <rect x="20" y="50" width="60" height="40" fill="url(#logoGradient)" stroke="#800020" stroke-width="2" filter="url(#glow)"/>
+                    <!-- Roof -->
+                    <polygon points="10,50 50,20 90,50" fill="#800020" stroke="#D4AF37" stroke-width="2" filter="url(#glow)"/>
+                    <!-- Door -->
+                    <rect x="42" y="65" width="16" height="25" fill="#800020" stroke="#D4AF37" stroke-width="1.5"/>
+                    <!-- Door handle -->
+                    <circle cx="55" cy="77" r="1.5" fill="#D4AF37"/>
+                    <!-- Windows -->
+                    <rect x="28" y="58" width="10" height="10" fill="#D4AF37" stroke="#800020" stroke-width="1"/>
+                    <rect x="62" y="58" width="10" height="10" fill="#D4AF37" stroke="#800020" stroke-width="1"/>
+                    <!-- Window cross -->
+                    <line x1="33" y1="58" x2="33" y2="68" stroke="#800020" stroke-width="1"/>
+                    <line x1="28" y1="63" x2="38" y2="63" stroke="#800020" stroke-width="1"/>
+                    <line x1="67" y1="58" x2="67" y2="68" stroke="#800020" stroke-width="1"/>
+                    <line x1="62" y1="63" x2="72" y2="63" stroke="#800020" stroke-width="1"/>
+                </svg>
+                <span class="logo-text">Damianco<span>Homes</span></span>
+            </div>
             <nav>
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
